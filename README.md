@@ -4,6 +4,9 @@
 
 # Principles Of Computer Composition
 ## HIEU
-## [RepresentationOfDataInformation](./principlesOfComputerComposition/HIEU/2_RepresentationOfDataInformation.md)
+### [RepresentationOfDataInformation](./principlesOfComputerComposition/HIEU/2_RepresentationOfDataInformation.md)
 
+# Linux
+## Basic
+### [Linux Basic Commands](./Linux/BasicKnowledge/BasicCommands.md)
 
