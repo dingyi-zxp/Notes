@@ -153,4 +153,31 @@ TCP和UDP传输层中在内核是两个独立的软件模块
 TCP/UDP各自端口号是互相独立的；如果TCP端口号为80，UDP端口号也为80 二者不会冲突。
 
 ## TCP 连接建立
-<++>
+TCP 是面向连接协议，在使用TCP前必须要建立连接，建立连接需要通过**三次握手** 来进行。
+![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost4/%E7%BD%91%E7%BB%9C/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.drawio.png)
+
+最开始客户端和服务端处于`CLOSE`状态。先是服务端主动监听某个端口处于`LISTEN`状态。
+
+![](https://cdn.xiaolincoding.com//mysql/other/format,png-20230309230500953.png)
+
+
+客户端会随机初始化序号`client_isn`，将序号置于TCP首部的 序号 字段，同时把`SYN` 标志位置为1，表示SYN报文。接着把第一个SYN报文发送给服务端，表示向服务端发起连接，该报文不包含应用层数据，之后客户端处于`SYN-SENT`状态。
+
+
+![](https://cdn.xiaolincoding.com//mysql/other/format,png-20230309230504118.png)
+
+服务端接收到客户端`SYN`报文后，首先客户端也随机初始化自己的序号`server_isn`,将此序号填入TCP首部 序号 字段中，其次把TCP首部的 确认应答号 字段填入`client_isn + 1`，接着把 SYN 和 ACK标志位置为1。最后把报文发送给可符号，报文也不含应用层数据，之后服务端处于`SYN-RCVD`状态。
+
+![](https://cdn.xiaolincoding.com//mysql/other/format,png-20230309230508297.png)
+
+客户端收到服务端报文后，还要向服务端回应最后一个报文，首先应该答报文TCP首部ACK标志为1，其次 确认应答号 字段填入`server_isn + 1`,最后把报文发送给服务端，这次报文可以携带客户端到服务端的数据，之后客户端处于`ESTABLISHED`状态。
+
+服务端收到客户端的应答报文后，也会进入`ESTABLISHED`状态。
+
+> 第三次握手是可以携带数据，前两次握手是不可以携带数据的
+>
+> 完成三次握手后，双方都处于`ESTABLISHED`状态，此时连接已经建立完成，C/S可以互相发送数据。
+
+### Linux查看TCP状态
+`netstat -napt`
+![](https://cdn.xiaolincoding.com//mysql/other/format,png-20230309230520683.png)
