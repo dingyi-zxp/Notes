@@ -35,5 +35,18 @@ $ ls -n # 显示UID和GID
 # ls -ld /etc/ 显示文件夹信息
 ```
 
+### chown 修改文件目录所有者
+```Shell
+chown [user] [F]
+```
+所有者不能进行修改，只有root用户可以进行修改。
+
+### chgrp 修改文件所属组
+```Basic
+chgrp [group] [F]
+```
+
+
+
 
 
