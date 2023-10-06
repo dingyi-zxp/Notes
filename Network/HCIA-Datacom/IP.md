@@ -151,3 +151,19 @@ IPv6 地址长度是 128 位，是以每 16 位作为一组，每组用冒号 �
 #### 结构
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IP/29.jpg)
 
+#### IPv6单播地址类型
+对于一对一通信的 IPv6 地址，主要划分了三类单播地址，每类地址的有效范围都不同。
+
+- 同一个链路单播通信，不经过路由器，可以使用**链路本地单播地址** ，IPv4没有此类型
+- 在内网里单播通信，可以使用**唯一本地地址** ，相当于IPv4私有IP
+- 在互联网通信，可以使用**全局单播地址** ，相当于IPv4公有IP
+
+![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IP/30.jpg)
+
+#### IPv4 IPv6首部
+![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IP/31.jpg)
+- 取消首部校验和字段。因为在数据链路层和传输层都会校验，因此 IPv6 直接取消了 IP 的校验。
+- 取消了分片/重新组装相关字段。 分片与重组是耗时的过程，IPv6 不允许在中间路由器进行分片与重组，这种操作只能在源与目标主机，这将大大提高了路由器转发的速度。
+- 取消选项字段。 选项字段不再是标准 IP 首部的一部分了，但它并没有消失，而是可能出现在 IPv6 首部中的「下一个首部」指出的位置上。删除该选项字段使的 IPv6 的首部成为固定长度的 40 字节。
+
+
